@@ -62,6 +62,7 @@ func (ac *KafkaConfig) GetKafkaConfig() *kafka.ConfigMap {
 			_ = kafkaConfig.SetKey("enable.ssl.certificate.verification", false)
 		}
 	}
+	_ = kafkaConfig.SetKey("security.protocol", "SASL_PLAINTEXT")
 	if ac.KafkaSASL != "" {
 		sasl := map[string]interface{}{}
 		err := hjson.Unmarshal([]byte(ac.KafkaSASL), &sasl)
